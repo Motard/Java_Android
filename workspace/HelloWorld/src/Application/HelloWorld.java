@@ -21,7 +21,7 @@ public class HelloWorld
 		System.out.println("Foram passados " + args.length + " parametros.");
 		  
         
-		String str = "Hello World adsdsd";
+		String str = "Hello World";
 		// Ternary operator.
 		str = (args.length > 0)? str + " " + args[0] : str;
 		
