@@ -8,6 +8,7 @@ public class Employee
 	private int    empNum;
 	private String name;
 	private String city;
+	private double salary;
 	
 	/**
 	 * Creates an instance of {@link Employee}, without arguments.
@@ -41,9 +42,10 @@ public class Employee
 	 * */
 	public Employee(int empNum, String name, String city)
 	{
-		this.empNum = empNum;
-		this.name   = name;
-		this.city   = city;
+//		this.empNum = empNum;
+//		this.name   = name;
+		this(empNum, name);
+		this.city = city;
 	}
 	
 	/*
@@ -83,6 +85,16 @@ public class Employee
 	public void setCity(String city) 
 	{
 		this.city = city;
+	}
+	
+	public double getSalary()
+	{
+		return this.salary;
+	}
+	
+	public void setSalary(double salary)
+	{
+		this.salary = salary;
 	}
 	
 	@Override

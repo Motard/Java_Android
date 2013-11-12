@@ -39,14 +39,35 @@ public class HelloWorld
 		*/
 		
 		// Criar objecto do tipo empregado utilizando o contructor com parâmetros.
-		Employee emp = new Employee(1234, "Ricardo Sousa", "Lisboa");
+//		Employee emp = new Employee(1234, "Ricardo Sousa", "Lisboa");
 		
 		// String name = emp.getName();
 		// System.out.println("Hello " + name + ", from " + emp.getCity());
 		
-		System.out.println("Hello " + emp.toString());// Não é necessário o .toString()
+//		System.out.println("Hello " + emp.toString());// Não é necessário o .toString()
+//		
+//		Object emp2 = new Employee(1234, "Ricardo Sousa", "Lisboa");
+//		System.out.println("Hello " + emp2.toString());
 		
-		Object emp2 = new Employee(1234, "Ricardo Sousa", "Lisboa");
-		System.out.println("Hello " + emp2.toString());
+//		OtherDirector dir = new OtherDirector(123, "Ricardo Sousa", "Lisboa"); // Não existe .ctor 
+//		OtherDirector dir = new Employee(1234, "Ricardo Sousa", "Lisboa"); // não compila
+//		OtherDirector dir = new OtherDirector();
+//		System.out.println(dir.getCity());
+		
+//		Director dir2 = new Director();
+//		System.out.println(dir2.getCity());
+//		System.out.println(dir2.getName());
+		
+		Employee[] employeesList;
+		employeesList = new Employee[3];
+		employeesList[0] = new Employee(1234, "Ricardo");
+		employeesList[1] = new Director(12345, "Lara");
+		employeesList[2] = new Employee(123456, "Pedro");
+		System.out.println(employeesList[1].toString());
+		((Director)employeesList[1]).firesEveryone();
+		
+//		int[] arr = new int[3];
+		
+		
 	}
 }
