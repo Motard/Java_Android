@@ -5,7 +5,7 @@ package Application;
  * 
  * @author ricardosousa
  * */
-public class Machine 
+public class Machine implements Worker
 {
 	// private fields.
 	private String manufacturer;
@@ -44,7 +44,7 @@ public class Machine
 	
 	public void startWork()
 	{
-		// Dummy
+		System.out.println("Machine working...");
 	}
 	
 	@Override

@@ -122,9 +122,10 @@ public class HelloWorld
 		objsList[6] = new Machine("Epson", "EMP-75", 1000);
 		objsList[7] = new Machine("Apple", "2010 iMac", 12345);
 		
-		int countEmps  = 0,
-			countMachs = 0,
-			countDirs  = 0;		
+		int countEmps    = 0,
+			countMachs   = 0,
+			countDirs    = 0,
+			countWorkers = 0;		
 		for (Object obj : objsList)
 		{
 			if (obj == null)
@@ -150,9 +151,30 @@ public class HelloWorld
 			// fim código feio.
 			
 			if (obj instanceof Director) countDirs++;
+			
+			if (obj instanceof Worker) countWorkers++;
 		}
 		
-		System.out.println("Existem: " + countEmps + " empregados dos quais " + countDirs + " director(es) e "
-						  + countMachs + " máquinas.");	
+		System.out.println("Existem: " + countEmps + " empregados dos quais " + countDirs + " director(es), "
+						  + countMachs + " máquinas e " + countWorkers + " trabalhadores.\n");	
+		
+		Worker[] workersList = new Worker[8];
+		workersList[0] = new Employee(1234, "Ricardo");
+		workersList[2] = new Director(12345, "Lara");
+		workersList[3] = new Employee(123456, "Pedro");
+		workersList[6] = new Machine("Epson", "EMP-75", 1000);
+		workersList[7] = new Machine("Apple", "2010 iMac", 12345);
+		
+		countWorkers = 0;		
+		for (Worker w : workersList)
+		{
+			if (w == null)
+				continue;
+			
+			System.out.println(w);
+			w.startWork();
+			countWorkers++;
+		}
+		System.out.println("Existem: " + countWorkers + " trabalhadores.");		
 	}
 }

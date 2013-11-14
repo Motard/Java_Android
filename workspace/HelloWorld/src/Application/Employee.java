@@ -3,7 +3,7 @@ package Application;
 /**
  * Class for represent one Employee.
  * */
-public class Employee
+public class Employee implements Worker
 {
 	private int    empNum;
 	private String name;
@@ -97,9 +97,10 @@ public class Employee
 		this.salary = salary;
 	}
 	
-	public void startWork()
+	@Override
+	public void startWork() 
 	{
-		// Dummy
+		System.out.println("Iniciei trabalho.");
 	}
 	
 	@Override
