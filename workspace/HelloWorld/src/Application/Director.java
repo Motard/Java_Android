@@ -46,8 +46,8 @@ public class Director extends Employee
 	@Override
 	public String toString() 
 	{
-		return "Director [empName=" + this.getName() + " empNum=" + this.getEmpNum() + ""
-				+ " empCity=" + this.getCity() +"]";
+		return "Director [empName=" + this.getName() + ", empNum=" + this.getEmpNum() + ""
+				+ ", empCity=" + this.getCity() +"]";
 	}
 	
 	public void firesEveryone()

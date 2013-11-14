@@ -59,15 +59,100 @@ public class HelloWorld
 //		System.out.println(dir2.getName());
 		
 		Employee[] employeesList;
-		employeesList = new Employee[3];
+		employeesList = new Employee[4];
 		employeesList[0] = new Employee(1234, "Ricardo");
-		employeesList[1] = new Director(12345, "Lara");
-		employeesList[2] = new Employee(123456, "Pedro");
-		System.out.println(employeesList[1].toString());
-		((Director)employeesList[1]).firesEveryone();
+		employeesList[2] = new Director(12345, "Lara");
+		employeesList[3] = new Employee(123456, "Pedro");
+//		System.out.println(employeesList[1].toString());
+//		((Director)employeesList[1]).firesEveryone();
 		
 //		int[] arr = new int[3];
+//		
+//		int i, count = 0;
+//		for(i = 0; i < employeesList.length; ++i)
+//		{
+//			if (employeesList[i] != null)
+//			{
+//				System.out.println(employeesList[i].getName());
+//				count++;
+//			}
+//				
+//		}
 		
+//		for(Employee emp : employeesList)
+//		{
+//			System.out.println(emp);
+//		}
 		
+		// Versão alternativa.
+		int ct = 0;
+		for (Employee employee : employeesList) 
+		{
+			if (employee == null)
+				continue;
+			
+			System.out.println(employee);
+			ct++;
+		}
+		System.out.println("Existem: " + ct + " empregados.\n");
+		
+//		System.out.println(i++);
+//		System.out.println(i);
+//		System.out.println("Existem: " + count);		
+		
+		Machine[] machinesList = new Machine[4];
+		machinesList[0] = new Machine("Epson", "EMP-75", 1000);
+		machinesList[1] = new Machine("Apple", "2010 iMac", 12345);
+		
+		ct = 0;
+		for (Machine machine : machinesList) 
+		{
+			if (machine == null)
+				continue;
+			
+			System.out.println(machine);
+			ct++;
+		}
+		System.out.println("Existem: " + ct + " máquinas.\n");
+		
+		Object[] objsList = new Object[8];
+		objsList[0] = new Employee(1234, "Ricardo");
+		objsList[2] = new Director(12345, "Lara");
+		objsList[3] = new Employee(123456, "Pedro");
+		objsList[6] = new Machine("Epson", "EMP-75", 1000);
+		objsList[7] = new Machine("Apple", "2010 iMac", 12345);
+		
+		int countEmps  = 0,
+			countMachs = 0,
+			countDirs  = 0;		
+		for (Object obj : objsList)
+		{
+			if (obj == null)
+				continue;
+			
+			System.out.println(obj);
+			
+			//obj.startWork(); // Assim não dá.
+			
+			// Detectar o tipo por introspecção.
+			
+			// Código feio, epa nao...
+			if (obj instanceof Employee) 
+			{
+				((Employee) obj).startWork();
+				countEmps++;
+			}
+			if (obj instanceof Machine)
+			{
+				((Machine) obj).startWork();
+				countMachs++;
+			}
+			// fim código feio.
+			
+			if (obj instanceof Director) countDirs++;
+		}
+		
+		System.out.println("Existem: " + countEmps + " empregados dos quais " + countDirs + " director(es) e "
+						  + countMachs + " máquinas.");	
 	}
 }

@@ -97,10 +97,15 @@ public class Employee
 		this.salary = salary;
 	}
 	
+	public void startWork()
+	{
+		// Dummy
+	}
+	
 	@Override
 	public String toString() 
 	{
-		return "Employee [empName=" + this.getName() + " empNum=" + this.getEmpNum() + ""
-				+ " empCity=" + this.getCity() +"]";
+		return "Employee [empName=" + this.getName() + ", empNum=" + this.getEmpNum() + ""
+				+ ", empCity=" + this.getCity() +"]";
 	}
 }

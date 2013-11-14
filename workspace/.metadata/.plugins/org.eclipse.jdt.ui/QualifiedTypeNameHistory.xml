@@ -8,8 +8,8 @@
 <fullyQualifiedTypeName name="org.joda.time.Duration"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="Application.WorkerLoggerEntry"/>
-<fullyQualifiedTypeName name="Application.Employee"/>
 <fullyQualifiedTypeName name="Application.OtherDirector"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="Application.Employee"/>
 <fullyQualifiedTypeName name="Application.Director"/>
 </qualifiedTypeNameHistroy>
