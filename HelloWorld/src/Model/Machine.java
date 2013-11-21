@@ -1,4 +1,4 @@
-package Application;
+package Model;
 
 import java.util.Date;
 
@@ -49,40 +49,53 @@ public class Machine implements Worker
 		return model;
 	}
 	
-	public void startWork()
+	public boolean startWork()
 	{
-		System.out.println("Machine start working...");
-		
-		// TODO cuidado, porque pode já estar a trabalhar. 
+		// Utilização de lógica invertida (testar primeiro a falha)
+		if (this.isWorking())
+			return false;
 		
 		this.startedAt = new Date(); // Data actual.
+		System.out.println("Machine start working...");
+		return true;
 	}
 	
 	@Override
-	public void stopWork()
+	public void stopWork() throws UnsupportedOperationException
 	{
-		// TODO verificar se está a trabalhar.
-		
-		Date now = new Date();
-		
-		DateTime startDate = new DateTime(this.startedAt);
-		DateTime endDate   = new DateTime(now);
-		
-		Duration duration = new Duration(startDate, endDate);
-		
-		// TODO alterar para getStandartHours()
-		this.hoursWorked = duration.getStandardSeconds();
-		
-		this.startedAt = null;
-		
-		System.out.println("Machine stop working...");
+		if (this.isWorking())
+		{
+			this.hoursWorked += sessionTimeInSeconds();
+			
+			this.startedAt = null;
+			System.out.println("Machine stop working...");
+		}
+		else
+			throw new UnsupportedOperationException("A maquina ainda nao começou a trabalhar.");
+	}
+	
+	@Override
+	public boolean isWorking()
+	{
+		return startedAt != null;
 	}
 	
 	@Override
 	public long workedHours()
 	{
-		// TODO adicionar as horas de trabalho actuais.
-		return this.hoursWorked;
+		return this.hoursWorked + sessionTimeInSeconds();
+	}
+	
+	private long sessionTimeInSeconds()
+	{
+		if (!isWorking())
+			return 0;
+					
+		Date now = new Date();
+		DateTime startDate = new DateTime(this.startedAt);
+		DateTime endDate   = new DateTime(now);
+
+		return new Duration(startDate, endDate).getStandardSeconds();
 	}
 	
 	@Override
@@ -91,5 +104,4 @@ public class Machine implements Worker
 		return "Machine [sku=" + this.getSku() + ", manufacturer=" + this.getManufacturer() +", "
 			 + "model=" + this.getModel() + "]";
 	}
-	
 }

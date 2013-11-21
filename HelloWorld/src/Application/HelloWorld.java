@@ -2,6 +2,11 @@ package Application;
 
 import java.util.ArrayList;
 
+import Model.Director;
+import Model.Employee;
+import Model.Machine;
+import Model.Worker;
+
 /**
  * This is an JAVA Hello World.
  * This shows a basic anatomy of a program in JAVA.

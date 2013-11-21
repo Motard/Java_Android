@@ -1,5 +1,8 @@
 package Application;
 
+import Model.Machine;
+import Model.Worker;
+
 public class MyCompany 
 {
 	public static void main(String[] args) 
@@ -13,7 +16,7 @@ public class MyCompany
 		
 		// Trabalhar...
 		try
-		{
+		{ 
 			Thread.sleep(10000);
 		}
 		catch (InterruptedException e)
@@ -23,6 +26,8 @@ public class MyCompany
 		}
 		
 		// Fim trabalho...
+		machine.stopWork();
+		
 		machine.stopWork();
 		
 		System.out.println("A maquina trabalhou " + machine.workedHours() + " segundos.");
