@@ -76,9 +76,24 @@ public class Employee implements Worker
 		return name;
 	}
 	
-	public void setName(String name) 
+	public void setName(String...names) 
 	{
-		this.name = name;
+		StringBuilder builder = new StringBuilder(50);
+		for (int i = 0; i < names.length; i++) 
+		{
+//			if (i == names.length -1)
+//			{
+//				this.name += names[i];
+//				break;
+//			}
+			
+//			this.name += names[i] + ((i == names.length - 1) ? "" : " ");
+			
+			builder.append(names[i])
+				   .append((i == names.length - 1) ? "" : " ");
+		}
+		
+		this.name = builder.toString();
 	}
 	
 	// setName Overload 
@@ -165,8 +180,22 @@ public class Employee implements Worker
 	@Override
 	public String toString() 
 	{
-		return "Employee [empName=" + this.getName() + ", empNum=" + this.getEmpNum() + ""
-				+ ", empCity=" + this.getCity() +"]";
+//		return "Employee [empName=" + this.getName() + ", empNum=" + this.getEmpNum() + ""
+//				+ ", empCity=" + this.getCity() +"]";
+		
+		// Com o StringBuilder.
+		StringBuilder builder = new StringBuilder("Employee [");
+		
+		// Se nao fosse fluente.
+//		builder.append("empName=");
+//		builder.append(this.getName());
+		
+		// Utilização de "Fluent API". (Idioma fluente)
+		builder.append("empName=").append(this.getName())
+			   .append(", empNum=").append(this.getEmpNum())
+			   .append(", empCity=").append(this.getCity() + "]");
+		
+		return builder.toString();
 	}
 	
 	/*
