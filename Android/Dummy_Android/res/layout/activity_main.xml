@@ -1,17 +1,42 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity" >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/my_label_id"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:gravity="center"
+        android:text="@string/hello_world"
+        android:textSize="50sp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/my_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp" >
+
+        <!-- set weigth to 1 for make the input box fill in the screen width
+        	 set the width to 0dp to  improves layout performance because using 
+        	 "wrap_content" as the width requires the system to calculate a width 
+        	 that is ultimately irrelevant because the weight value requires another 
+        	 width calculation to fill the remaining space. -->
+        <EditText
+            android:id="@+id/my_editText_id"
+            android:layout_weight="1" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/my_editText_hint" />
+
+        <Button
+            android:id="@+id/my_button_open_contacts_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/my_button_open_contacts" />
+    </LinearLayout>
+
+</LinearLayout>

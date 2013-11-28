@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- MainActivity strings -->
     <string name="app_name">Dummy_Android</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello Ricardo!</string>
+    <string name="hello_world">e-mail sender</string>
+    <string name="my_editText_hint">text here</string>
+    <string name="my_button_open_contacts">next</string>
+
+    <!-- ContactsActivity strings -->
+    <string name="my_contacts_label">Contacts</string>
 
 </resources>
