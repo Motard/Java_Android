@@ -55,7 +55,7 @@ public class ContactsActivity extends ListActivity
 		 * Create an implicit intent to start an component that allows to 
 		 * send an e-mail.
 		 * */
-		Intent intent = new Intent(Intent.ACTION_SEND);
+		Intent intent = new Intent();
 		intent.setType(HTTP.PLAIN_TEXT_TYPE);
 		intent.putExtra(Intent.EXTRA_EMAIL, new String[] {_contacts[position]}); // recipients.
 		intent.putExtra(Intent.EXTRA_SUBJECT, "Hello");
