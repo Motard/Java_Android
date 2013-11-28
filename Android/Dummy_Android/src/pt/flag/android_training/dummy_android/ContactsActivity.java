@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * List Activity with e-mail contacts for select one to send the e-mail.
@@ -60,5 +61,8 @@ public class ContactsActivity extends ListActivity
 		intent.putExtra(Intent.EXTRA_SUBJECT, "Hello");
 		intent.putExtra(Intent.EXTRA_TEXT, _emailText);
 		startActivity(intent);
+		
+		// Show an toast only for show that the startActivity is asynchronous operation.
+		Toast.makeText(this, "Email send to " + _contacts[position], Toast.LENGTH_LONG).show();
 	}
 }
