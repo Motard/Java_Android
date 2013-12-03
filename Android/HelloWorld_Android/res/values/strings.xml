@@ -6,5 +6,9 @@
     <string name="hello_world">Hello Ricardo!</string>
 	<string name="hello_world2">Hello Lara!</string>
 	<string name="btn_text">click me</string>
+	<string name="btn1_text">show toast</string>
+	<string name="btn2_text">send email</string>
+	<string name="btn3_text">open second activity</string>
+	<string name="second_activity_txt">Second Activity</string>
 	
 </resources>
