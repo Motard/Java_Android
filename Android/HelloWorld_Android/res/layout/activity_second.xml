@@ -10,4 +10,12 @@
         android:text="@string/second_activity_txt"
         />
     
+    <Button 
+        android:id="@+id/back_btn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_btn"
+        android:onClick="goBack"
+        />
+    
 </LinearLayout>

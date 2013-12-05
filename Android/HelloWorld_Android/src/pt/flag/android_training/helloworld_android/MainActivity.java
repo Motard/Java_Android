@@ -5,6 +5,7 @@ import org.apache.http.protocol.HTTP;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
@@ -86,5 +87,22 @@ public class MainActivity extends Activity
 		 *  activity.
 		 * */
 		startActivity(new Intent(this, SecondActivity.class));
+	}
+	
+	// OnCLick method for open list activity with the e-mail addresses.
+	public void sendEmailTo(View v)
+	{
+		// First, create an explicit intent to open the list activity with the e-mail addresses. 
+		Intent intent = new Intent(this, MailActivity.class);
+		
+		// Set intent extra with the e-mail body String.
+		// Step 1: Get the e-mail body from EditText element.
+		EditText et = (EditText)findViewById(R.id.my_editText_id);
+		String body = et.getText().toString();
+		// Step 2: Set as extra.
+		intent.putExtra("my_body", body);
+		
+		// Send the intent :-)
+		startActivity(intent);
 	}
 }

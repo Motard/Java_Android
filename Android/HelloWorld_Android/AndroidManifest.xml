@@ -23,8 +23,9 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="pt.flag.android_training.helloworld_android.SecondActivity"/>
-
+        <activity android:name="pt.flag.android_training.helloworld_android.SecondActivity" />
+	
+        <activity android:name="pt.flag.android_training.helloworld_android.MailActivity" />
     </application>
 
 </manifest>

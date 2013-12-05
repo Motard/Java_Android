@@ -10,5 +10,8 @@
 	<string name="btn2_text">send email</string>
 	<string name="btn3_text">open second activity</string>
 	<string name="second_activity_txt">Second Activity</string>
+	<string name="back_btn">back</string>
+	<string name="my_editText_hint">write e-mail here</string>
+	<string name="my_button_open_contacts">send</string>
 	
 </resources>
