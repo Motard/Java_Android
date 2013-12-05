@@ -15,20 +15,23 @@
     <LinearLayout
         android:id="@+id/my_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
 
-        <!-- set weigth to 1 for make the input box fill in the screen width
+        <!--
+             set weigth to 1 for make the input box fill in the screen width
         	 set the width to 0dp to  improves layout performance because using 
         	 "wrap_content" as the width requires the system to calculate a width 
         	 that is ultimately irrelevant because the weight value requires another 
-        	 width calculation to fill the remaining space. -->
+        	 width calculation to fill the remaining space.
+        -->
+
         <EditText
             android:id="@+id/my_editText_id"
-            android:layout_weight="1" 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:hint="@string/my_editText_hint" />
 
         <Button
@@ -38,5 +41,20 @@
             android:layout_gravity="right"
             android:text="@string/my_button_open_contacts" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="@string/my_dummy_activity_description"
+        android:textSize="18sp" />
+    
+    <Button
+        android:id="@+id/my_button_open_dummy_activity_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/my_button_open_dummy_activity" />
 
 </LinearLayout>

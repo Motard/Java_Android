@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="First Seccion" >
+        <EditTextPreference
+            android:key="signature"
+            android:summary="@string/my_user_signature_summary"
+            android:title="@string/my_user_signature_title" />
+        
+        <CheckBoxPreference
+            android:key="signatureOn"
+            android:title="@string/my_user_signature_checkbox" />
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

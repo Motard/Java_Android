@@ -8,22 +8,38 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="17" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
             android:name="pt.flag.android_training.dummy_android.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name="pt.flag.android_training.dummy_android.ContactsActivity"
             android:label="@string/my_contacts_label" />
+       
+        <activity android:name="pt.flag.android_training.dummy_android.PrefsActivity" />
+       
+        <activity android:name="pt.flag.android_training.dummy_android.DummyActivity" />
+
+        <receiver android:name="pt.flag.android_training.dummy_android.ChangeConnectivityCapture" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            	<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

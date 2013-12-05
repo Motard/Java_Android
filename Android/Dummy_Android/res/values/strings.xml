@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    
+    <!-- Preferences strings -->
+    <string name="my_user_signature_title">signature</string>
+	<string name="my_user_signature_summary">set the e-mails signature</string>
+	<string name="my_user_signature_checkbox">use signature</string>
+	
     <!-- MainActivity strings -->
     <string name="app_name">Dummy_Android</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">e-mail sender</string>
     <string name="my_editText_hint">text here</string>
     <string name="my_button_open_contacts">next</string>
+    <string name="my_button_open_dummy_activity">dummy activity</string>
+    <string name="my_dummy_activity_description">Example for make go back action programmatically</string>
 
     <!-- ContactsActivity strings -->
     <string name="my_contacts_label">Contacts</string>
+    <string name="my_contact_item_delete">delete</string>
+    <!-- ContactsActivity options menu strings -->
+    <string name="my_add_contact_menu">add new contact</string>
+    <string name="my_open_prefs">preferences</string>
+    
+    <!-- DummyActivity strings -->
+    <string name="my_button_back_from_dummy_activity">go back</string>
 
 </resources>
