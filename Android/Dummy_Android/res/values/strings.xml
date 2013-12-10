@@ -14,7 +14,10 @@
     <string name="my_button_open_contacts">next</string>
     <string name="my_button_open_dummy_activity">dummy activity</string>
     <string name="my_dummy_activity_description">Example for make go back action programmatically</string>
-
+	<string name="my_alarm_manager_description">Alarm manager example</string>
+	<string name="my_button_alarm_manager">set</string>
+	<string name="my_button_alarm_stop_manager">stop</string>
+	
     <!-- ContactsActivity strings -->
     <string name="my_contacts_label">Contacts</string>
     <string name="my_contact_item_delete">delete</string>

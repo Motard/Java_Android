@@ -1,7 +1,10 @@
 package pt.flag.android_training.dummy_android;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,10 @@ public class MainActivity extends Activity
 {
 	public final static String TAG = "tag";
 	public final static String EMAIL_TEXT = "pt.flag.android_training.dummy_android.MainActivity.EMAIL_TEXT";
+	
+	private final static long ALARM_TRIGGER = 10000;
+	private AlarmManager _alarmManager;
+	private PendingIntent _alarmManagerIntent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -69,6 +76,33 @@ public class MainActivity extends Activity
 			public void onClick(View v) 
 			{
 				startActivity(new Intent(MainActivity.this, DummyActivity.class));
+			}
+		});
+		
+		// Set alarm manager.
+		findViewById(R.id.my_button_alarm_manager_id).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) 
+			{
+				if(_alarmManager == null)
+				{
+					_alarmManager = (AlarmManager)(MainActivity.this.getSystemService(ALARM_SERVICE));
+					_alarmManagerIntent = PendingIntent.getActivity(MainActivity.this, 0, new Intent(MainActivity.this, DummyActivity.class), 0);
+				}
+				
+				//_alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + ALARM_TRIGGER, _alarmManagerIntent);
+				_alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + ALARM_TRIGGER, ALARM_TRIGGER, _alarmManagerIntent);
+			}
+		});
+		
+		// Stop alarm manager.
+		findViewById(R.id.my_button_alarm_manager_stop_id).setOnClickListener(new OnClickListener() {
+					
+			@Override
+			public void onClick(View v) 
+			{
+				_alarmManager.cancel(_alarmManagerIntent);
 			}
 		});
 	}
