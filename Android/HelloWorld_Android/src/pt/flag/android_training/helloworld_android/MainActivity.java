@@ -29,6 +29,15 @@ public class MainActivity extends Activity
 		_tv.setTextSize(50);
 		
 		((TextView)findViewById(R.id.textView2)).setText(_tv.getText());
+		
+		findViewById(R.id.my_button_open_prefs_id).setOnClickListener(new View.OnClickListener() {	
+			@Override
+			public void onClick(View v) 
+			{
+				// Explicit intent to launch preferences.
+				startActivity(new Intent(MainActivity.this, PrefsActivity.class));
+			}
+		});
 	}
 	
 	// OnClick method.

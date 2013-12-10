@@ -13,5 +13,9 @@
 	<string name="back_btn">back</string>
 	<string name="my_editText_hint">write e-mail here</string>
 	<string name="my_button_open_contacts">send</string>
+	<string name="my_contact_item_delete">delete</string>
+	<string name="my_user_signature_summary">write your digital signature</string>
+	<string name="my_user_signature_title">digital signature</string>
+	<string name="my_button_open_prefs">preferences</string>
 	
 </resources>

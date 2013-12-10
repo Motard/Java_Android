@@ -185,8 +185,7 @@ public class ContactsActivity extends ListActivity
 			
 			h.tv.setText(_contacts.get(position));
 			// Set the delete action in the btn.
-			h.bt.setOnClickListener(new View.OnClickListener() 
-			{
+			h.bt.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) 
 				{
