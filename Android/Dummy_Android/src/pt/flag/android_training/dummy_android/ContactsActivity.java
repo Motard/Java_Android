@@ -1,24 +1,30 @@
 package pt.flag.android_training.dummy_android;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.http.protocol.HTTP;
+
+import pt.flag.android_training.dummy_android.providers.ContactsContract;
+import pt.flag.android_training.dummy_android.services.AddContactService;
+import pt.flag.android_training.dummy_android.services.RemoveContactService;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Context;
+import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.CursorAdapter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,10 +36,8 @@ import android.widget.TextView;
  * */
 public class ContactsActivity extends ListActivity
 {
-	private static final List<String> _contacts = new ArrayList<String>();
-	
 	private String _emailText;
-	private ArrayAdapter<String> _adapter;
+	private CursorAdapter _adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -44,31 +48,43 @@ public class ContactsActivity extends ListActivity
 		 *  In this example, none layout is defined but you can define one ;-).
 		 *  So, is not necessary to inflate the view.
 		 */
+				
+		// Get the e-mail text from intent.
+		_emailText = getIntent().getStringExtra(MainActivity.EMAIL_TEXT);
 		
-		// Set the contacts.
-		_contacts.add("ricardo.sousa@challenge.pt");
-		_contacts.add("lara.santos@challenge.pt");
-		
-		/*
-		 * The interface ListAdapter defines the necessary things to adapt one data model 
-		 * to the ListView.
-		 * The "android.R.layout.simple_list_item_1" parameter indicates that is for use the 
-		 * Android default layout in the ListView items.
-		 * */
-		// _adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, _contacts);
-		
-		// Usage of the custom adapter.
 		_adapter = new ContactsAdapter();
 		setListAdapter(_adapter);
 		
-		// Get the e-mail text from intent.
-		_emailText = getIntent().getStringExtra(MainActivity.EMAIL_TEXT);
+		// Use LoaderManager.
+		getLoaderManager().initLoader(0, null, new LoaderCallbacks<Cursor>() {
+			@Override
+			public Loader<Cursor> onCreateLoader(int id, Bundle args)
+			{
+				return new CursorLoader(ContactsActivity.this, pt.flag.android_training.dummy_android.providers.ContactsContract.CONTENT_URI, null, null, null, null);
+			}
+
+			@Override
+			public void onLoadFinished(Loader<Cursor> loader, Cursor cursor)
+			{
+				// Register this cursor to "watch" the changes occurred in the specified URI.
+				cursor.setNotificationUri(getContentResolver(), pt.flag.android_training.dummy_android.providers.ContactsContract.CONTENT_URI);
+				_adapter.swapCursor(cursor);
+			}
+
+			@Override
+			public void onLoaderReset(Loader<Cursor> loader) 
+			{
+				_adapter.swapCursor(null);
+			}
+		});
 	}
 	
-	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id)
 	{
 		super.onListItemClick(l, v, position, id);
+		
+		// Get the cursor.
+		Cursor cursor = (Cursor)l.getItemAtPosition(position);
 		
 		// Verify the signature from preferences.
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -85,13 +101,10 @@ public class ContactsActivity extends ListActivity
 		 * */
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType(HTTP.PLAIN_TEXT_TYPE);
-		intent.putExtra(Intent.EXTRA_EMAIL, new String[] {_contacts.get(position)}); // recipients.
+		intent.putExtra(Intent.EXTRA_EMAIL, new String[] {cursor.getString(cursor.getColumnIndex(ContactsContract.EMAIL))}); // recipients.
 		intent.putExtra(Intent.EXTRA_SUBJECT, "Hello");
 		intent.putExtra(Intent.EXTRA_TEXT, body);
 		startActivity(intent);
-		
-		// Show an toast only for show that the startActivity is asynchronous operation.
-		// Toast.makeText(this, "Email send to " + _contacts.get(position), Toast.LENGTH_LONG).show();
 	}
 	
 	/*
@@ -134,8 +147,10 @@ public class ContactsActivity extends ListActivity
 						// Refresh the list view.
 						// _adapter.notifyDataSetChanged();
 						
-						// Or use add method that refresh the view also.
-						_adapter.add(et.getText().toString());
+						// Start service to add new contact.
+						Intent intent = new Intent(ContactsActivity.this, AddContactService.class);
+						intent.putExtra(AddContactService.EMAIL, et.getText().toString());
+						startService(intent);
 					}
 				})
 				.create()
@@ -158,41 +173,14 @@ public class ContactsActivity extends ListActivity
 	 * 
 	 * @author ricardosousa
 	 * */
-	private class ContactsAdapter extends ArrayAdapter<String>
+	private class ContactsAdapter extends CursorAdapter
 	{
+		private final Context _ctx;
+		
 		public ContactsAdapter() 
 		{
-			super(ContactsActivity.this, 0, ContactsActivity._contacts);
-		}
-
-		@Override
-		public View getView(final int position, View convertView, ViewGroup parent) 
-		{
-			View v = convertView; 
-			Holder h;
-			if ( v== null) 
-			{ 
-				v = getLayoutInflater().inflate(R.layout.contact_item, null); 
-				
-				h = new Holder();
-				h.tv = (TextView)v.findViewById(R.id.my_contact_item_id);
-				h.bt = (Button)v.findViewById(R.id.my_contact_item_delete_id);
-				// Set the view tag with the holder object for optimization.
-				v.setTag(h);
-			} 
-			else 
-				h = (Holder)v.getTag(); 
-			
-			h.tv.setText(_contacts.get(position));
-			// Set the delete action in the btn.
-			h.bt.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) 
-				{
-					ContactsAdapter.this.remove(ContactsActivity._contacts.get(position));
-				}
-			});
-			return v;
+			super(ContactsActivity.this, null, 0);
+			_ctx = ContactsActivity.this;
 		}
 		
 		@Override
@@ -205,6 +193,37 @@ public class ContactsActivity extends ListActivity
 		public boolean isEnabled(int position) 
 		{
 			return true;
+		}
+
+		@Override
+		public void bindView(View v, Context ctx, final Cursor cursor) 
+		{
+			Holder h = (Holder)v.getTag(); 
+			
+			h.tv.setText(cursor.getString(cursor.getColumnIndex(pt.flag.android_training.dummy_android.providers.ContactsContract.EMAIL)));
+			// Set the delete action in the btn.
+			h.bt.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) 
+				{
+					// Start activity to remove.
+					int id = cursor.getInt(cursor.getColumnIndex(ContactsContract._ID));
+					Intent intent = new Intent(ContactsAdapter.this._ctx, RemoveContactService.class);
+					intent.putExtra(RemoveContactService.POSITION, id);
+					startService(intent);
+				}
+			});
+		}
+
+		@Override
+		public View newView(Context arg0, Cursor arg1, ViewGroup arg2)
+		{
+			Holder h = new Holder(); 
+			View v = getLayoutInflater().inflate(R.layout.contact_item, null); 
+			h.tv = (TextView)v.findViewById(R.id.my_contact_item_id);
+			h.bt = (Button)v.findViewById(R.id.my_contact_item_delete_id);
+			v.setTag(h);
+			return v;
 		}
 		
 		/**
