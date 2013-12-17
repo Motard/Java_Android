@@ -17,6 +17,7 @@
 	<string name="my_user_signature_summary">write your digital signature</string>
 	<string name="my_user_signature_title">digital signature</string>
 	<string name="my_button_open_prefs">preferences</string>
+	<string name="my_button_start_alarm">start alarm</string>
 	
 	<string name="my_add_contact_menu">add contact</string>
 	<string name="my_open_prefs">open preferences</string>

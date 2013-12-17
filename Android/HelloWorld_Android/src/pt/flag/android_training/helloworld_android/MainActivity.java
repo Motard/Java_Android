@@ -3,12 +3,15 @@ package pt.flag.android_training.helloworld_android;
 import org.apache.http.protocol.HTTP;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
 
@@ -36,6 +39,23 @@ public class MainActivity extends Activity
 			{
 				// Explicit intent to launch preferences.
 				startActivity(new Intent(MainActivity.this, PrefsActivity.class));
+			}
+		});
+		
+		// Start alarm button.
+		findViewById(R.id.my_button_start_alarm_id).setOnClickListener(new View.OnClickListener() {	
+			@Override
+			public void onClick(View v)
+			{
+				// Get alarm.
+				AlarmManager manager = (AlarmManager)MainActivity.this.getSystemService(ALARM_SERVICE);
+				
+				PendingIntent intent = PendingIntent.getActivity(MainActivity.this,
+																0, 
+																new Intent(MainActivity.this, SecondActivity.class), 
+																PendingIntent.FLAG_ONE_SHOT);
+				
+				manager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 10000, intent);
 			}
 		});
 	}
