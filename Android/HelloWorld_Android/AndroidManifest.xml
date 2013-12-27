@@ -34,12 +34,19 @@
         <activity android:name="pt.flag.android_training.helloworld_android.MailActivity" />
         <activity android:name="pt.flag.android_training.helloworld_android.PrefsActivity" />
   
-        <receiver android:name="pt.flag.android_training.helloworld_android.ConnectivityCapture" >
+        <receiver android:name="pt.flag.android_training.helloworld_android.receivers.ConnectivityCapture" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             	<action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+        
+        <service android:name="pt.flag.android_training.helloworld_android.services.AddEmailService" />
+        <service android:name="pt.flag.android_training.helloworld_android.services.RemoveEmailService" />
+        
+        <provider 
+            android:name="pt.flag.android_training.helloworld_android.providers.EmailsProvider"
+            android:authorities="pt.flag.android_training.helloworld_android.providers.emailsprovider" />
         
         </application>
 

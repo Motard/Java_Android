@@ -1,4 +1,4 @@
-package pt.flag.android_training.helloworld_android;
+package pt.flag.android_training.helloworld_android.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

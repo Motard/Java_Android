@@ -1,6 +1,7 @@
 package pt.flag.android_training.dummy_android;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.os.SystemClock;
 import android.app.Activity;
 import android.app.AlarmManager;
@@ -32,6 +33,9 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		// Inflate the view.
 		setContentView(R.layout.activity_main);
+		
+		
+		System.out.println(StrictMode.getThreadPolicy().toString());
 		
 		// Example of add an button, or other view, programmatically.
 		// Button b = new Button(this);
